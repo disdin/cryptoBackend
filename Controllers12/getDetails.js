@@ -13,20 +13,10 @@ const getDetails = async (req, res) => {
 
 
     await page.waitForSelector(
-      'div[class="sc-a63f8491-2 cgpSFv"] table tbody tr', { timeout: 40000 }
+      'div[class="sc-a63f8491-2 cgpSFv"] table tbody tr'
     );
 
-    const sleep = (ms) => new Promise(res => setTimeout(res, ms));
-    await sleep(2000);
-
-    // OR Monitor network requests
-    // const initialLoad = page.waitForRequest(request => request.response() !== null);
-
-    // // Do something to trigger the loading component to disappear or content to load further
-
-    // await initialLoad;
-
-    const startTime = new Date();
+    let start = Date.now();
     const historicalData = await page.evaluate(() => {
       const rows = document.querySelectorAll(
         'div[class="sc-a63f8491-2 cgpSFv"] table tbody tr'
@@ -39,36 +29,31 @@ const getDetails = async (req, res) => {
         const originalArray = data;
         const specificIndices = [0, 6];
         const filteredArray = specificIndices.map(index => originalArray[index]);
-        data = filteredArray;
+        data= filteredArray;
 
         return data;
       });
     });
 
-    const endTime = new Date();
-    const elapsedTimeInSeconds = (endTime - startTime) / 1000;
-    const max = 6, min = 2;
-    let delayFactor = (Math.random() * (max - min) + min).toFixed(2);
-    delayFactor = parseFloat(delayFactor)
+    const elapsedTime = Date.now() - start;
+
 
     const payload = {
       success: true,
       message: "all rows retrieved successfully",
       body: historicalData,
-      time: (elapsedTimeInSeconds + 3 + delayFactor).toFixed(2)
+      time: elapsedTime
     }
-    res.status(200).send(JSON.stringify(payload));
+    res.status(200).send(JSON.stringify(payload), null, 2);
     await browser.close();
   } catch (err) {
     console.log("error in getDetails ", err);
     const payload = {
       success: false,
-      message: "error occured",
+      message: "error occured ",
       body: null,
-      time: 0,
     }
-    res.status(200).send(JSON.stringify(payload));
-
+  res.status(200).send(JSON.stringify(payload));
   }
 }
 
