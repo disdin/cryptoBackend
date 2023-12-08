@@ -4,7 +4,7 @@ import puppeteer from "puppeteer";
 const getDetails = async (req, res) => {
   try {
     var id = req.params.id;
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({ headless: 'new',});
     const page = await browser.newPage();
 
     await page.goto(
