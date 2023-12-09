@@ -13,7 +13,7 @@ const getNames = async (req, res) => {
 
 
     await page.waitForSelector(
-      'div[class="sc-66133f36-2 cgmess"] table tbody tr'
+      'div[class="sc-66133f36-2 cgmess"] table tbody tr', {timeout:0}
     );
 
     const namesOFCurrency = await page.evaluate(() => {
