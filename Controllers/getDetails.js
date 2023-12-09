@@ -13,7 +13,7 @@ const getDetails = async (req, res) => {
 
 
     await page.waitForSelector(
-      'div[class="sc-a63f8491-2 cgpSFv"] table tbody tr', { timeout: 40000 }
+      'div[class="sc-a63f8491-2 cgpSFv"] table tbody tr'
     );
 
     const sleep = (ms) => new Promise(res => setTimeout(res, ms));
