@@ -2,6 +2,7 @@
 # sidhantbahri01@gmail.com +91 9878427784
 
 # Video link - https://youtu.be/usWA_ol2JcA
+Assignment Submission Link - https://docs.google.com/document/d/17s9cfxVliUz9BxuFxak6uLcca1W2xJw8_DtEoSKZq9U/edit?usp=sharing
 # How to install the extension and setup project.
 
 1. Clone repository - https://github.com/disdin/cryptoBackend
