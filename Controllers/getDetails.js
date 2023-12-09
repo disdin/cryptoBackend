@@ -8,7 +8,7 @@ const getDetails = async (req, res) => {
     const page = await browser.newPage();
 
     await page.goto(
-      `https://coinmarketcap.com/currencies/${id}/historical-data/`
+      `https://coinmarketcap.com/currencies/${id}/historical-data/`,{waitUntil: 'load', timeout: 0}
     );
 
 

@@ -6,8 +6,9 @@ const getNames = async (req, res) => {
     const browser = await puppeteer.launch({ headless: 'new'});
     const page = await browser.newPage();
 
+
     await page.goto(
-      'https://coinmarketcap.com/'
+      'https://coinmarketcap.com/',{waitUntil: 'load', timeout: 0}
     );
 
 
